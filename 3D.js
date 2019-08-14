@@ -1,20 +1,18 @@
-define(["qlik", "text!./template.html", "./node_modules/jquery/dist/jquery.js", "css!./3D.css"],
-    function(qlik, template) {
+define([
+        './properties',
+        './initialproperties',
+        'text!./template.html'
+    ],
+    function(props, initProps, ngTemplate) {
+        'use strict';
 
         return {
-            template: template,
-            support: {
-                snapshot: true,
-                export: true,
-                exportData: false
-            },
-            paint: function() {
-                return qlik.Promise.resolve();
-            },
+            definition: props,
+            initialProperties: initProps,
+            snapshot: { canTakeSnapshot: true },
+            template: ngTemplate,
             controller: ['$scope', function($scope) {
-                //add your rendering code here
-                $scope.name = "MA";
+                $scope.myTitle = 'This is my AngularJS table';
             }]
         };
-
     });
